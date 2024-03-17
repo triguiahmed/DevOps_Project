@@ -18,6 +18,8 @@ pipeline {
 					}
 				}
 			}
+			}
+
         /*stage('Build') {
             steps {
                 sh 'mvn clean install' // Example Maven build command
