@@ -57,7 +57,7 @@ pipeline {
                 script {
                         try {
                             echo 'Deploying project...'
-                            sh "cd DevOps_Project && mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://nexus:8081/repository/maven-releases/"
+                            sh "cd DevOps_Project && mvn deploy -U -DaltDeploymentRepository=deploymentRepo::default::http://nexus:8081/repository/maven-releases/"
                             echo 'Project deployed successfully.'
                         } catch (Exception e) {
                             error "Fail in Nexus Deploy stage: ${e.message}"
