@@ -79,7 +79,7 @@ pipeline {
                 steps{
                         script{
                         sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                        sh 'docker push esprit/devops_project-2alinfo03:$IMAGE_TAG'
+                        sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
                         }
                     }
                 }
