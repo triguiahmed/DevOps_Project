@@ -103,7 +103,7 @@ pipeline {
         
         
     }
-    }
+    
     post {
         success {
             // Actions to perform on successful build
@@ -114,3 +114,5 @@ pipeline {
             echo 'Build failed!'
         }
     }
+    }
+    
