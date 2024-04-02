@@ -84,21 +84,26 @@ pipeline {
                  version: '0.0.1-SNAPSHOT'
             }
         }
-        }
+
+        stage('Build backend docker image') {
+                steps {
+                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
+                        }
+                    }
+        stage('Push images to Dockerhub') {
+                steps{
+                        script{
+                        sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                        sh 'docker push  $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
+                        }
+                    }
+                }
+
+
+        
+        
     }
-    stage('Build backend docker image') {
-    steps {
-        sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
     }
-}
-    stage('Push images to Dockerhub') {
-              steps{
-                      script{
-                      sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                      sh 'docker push  $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
-                      }
-                  }
-              }
     post {
         success {
             // Actions to perform on successful build
