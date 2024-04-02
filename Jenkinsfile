@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         IMAGE_TAG = "${env.BUILD_NUMBER}"
+        DOCKERHUB_USERNAME =  "${env.DOCKERHUB_USERNAME}"
+        DOCKERHUB_PASSWORD =  "${env.DOCKERHUB_PASSWORD}"
         }
     stages {
         stage('Fetch Source Code') {
@@ -77,7 +79,7 @@ pipeline {
                 steps{
                         script{
                         sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                        sh 'docker push  $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
+                        sh 'docker push esprit/devops_project-2alinfo03:$IMAGE_TAG'
                         }
                     }
                 }
