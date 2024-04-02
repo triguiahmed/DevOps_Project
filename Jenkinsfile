@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+        }
     stages {
         stage('Fetch Source Code') {
 			steps {
@@ -53,7 +55,7 @@ pipeline {
         //     }
         // }
         stage('Nexus Deploy') {
-            steps {
+            /*steps {
                 script {
                         try {
                             echo 'Deploying project...'
@@ -63,7 +65,25 @@ pipeline {
                             error "Fail in Nexus Deploy stage: ${e.message}"
                         }
                     }
+            }*/
+            steps {
+                nexusArtifactUploader artifacts: [
+                    [
+                        artifactId: 'devops_project',
+                        classifier: '',
+                        file: 'target/devops_project.jar',
+                        type: 'jar'
+                    ]
+                ],
+                 credentialsId: 'nexus3',
+                 groupId: 'tn.esprit.devops',
+                 nexusUrl: 'nexus:8081',
+                 nexusVersion: 'nexus3',
+                 protocol: 'http',
+                 repository: 'devop_project',
+                 version: '0.0.1-SNAPSHOT'
             }
+        }
         }
     }
 
