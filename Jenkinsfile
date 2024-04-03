@@ -11,6 +11,7 @@ pipeline {
 				script {
 					try {
                         echo "Cleaning Workspace"
+						sh 'git status'
                         
 					} catch (Exception e) {
 						error "Fail in Fetch Source Code stage: ${e.message}"
