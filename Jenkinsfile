@@ -57,7 +57,7 @@ pipeline {
         }
         stage('MVN TEST'){
                 steps{
-                    sh 'cd DevOps_Project && mvn clean test';
+                    sh 'cd DevOps_Project && mvn test';
                 }
 	}
             stage("MVN Build") {
@@ -85,7 +85,6 @@ pipeline {
         stage('Build backend docker image') {
                 steps {
                     echo "Building backend docker image"
-			sh 'ls -la; docker --version; whoami'
                     sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
                         }
                     }
