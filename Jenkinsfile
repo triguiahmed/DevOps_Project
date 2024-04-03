@@ -103,6 +103,13 @@ pipeline {
                         }
                     }
                 }
+	stage('Push images to Dockerhub') {
+                steps{
+                        script{
+                        	sh 'docker compose up -d'
+                        }
+                    }
+                }
 
 
         
