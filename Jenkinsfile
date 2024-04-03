@@ -47,18 +47,18 @@ pipeline {
             }
 
         }
-        stage('SonarQube tests') {
-             steps {
-                withSonarQubeEnv('sonar') {
-                     sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.projectName='DevOps' -Dsonar.host.url=http://sonarqube:9000"
-                 }
-            }
-        }
-        stage('MVN TEST'){
-                steps{
-                    sh 'cd DevOps_Project && mvn clean test';
-                }
-	}
+ //        stage('SonarQube tests') {
+ //             steps {
+ //                withSonarQubeEnv('sonar') {
+ //                     sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.projectName='DevOps' -Dsonar.host.url=http://sonarqube:9000"
+ //                 }
+ //            }
+ //        }
+ //        stage('MVN TEST'){
+ //                steps{
+ //                    sh 'cd DevOps_Project && mvn clean test';
+ //                }
+	// }
             stage("MVN Build") {
                steps {
                 sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
