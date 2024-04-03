@@ -52,7 +52,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
              steps {
-                withSonarQubeEnv('sonar') {
+                withSonarQubeEnv('sonarqube') {
                      sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps_Project -Dsonar.projectName='DevOps_Project' -Dsonar.host.url=http://sonarqube:9000"
                  }
             }
