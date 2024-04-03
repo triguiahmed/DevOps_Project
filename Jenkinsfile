@@ -56,6 +56,8 @@ pipeline {
             sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=DevOps_Project -Dsonar.projectName='DevOps_Project'"
             }
         }
+
+
         stage('MVN TEST'){
                 steps{
                     sh 'cd DevOps_Project && mvn clean test';
