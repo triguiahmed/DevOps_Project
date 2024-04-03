@@ -51,9 +51,10 @@ pipeline {
 
         }
         stage('SonarQube Analysis') {
-            def mvn = tool 'Default Maven';
-            withSonarQubeEnv() {
-            sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=DevOps_Project -Dsonar.projectName='DevOps_Project'"
+             steps {
+                withSonarQubeEnv('sonar') {
+                     sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps_Project -Dsonar.projectName='DevOps_Project' -Dsonar.host.url=http://sonarqube:9000"
+                 }
             }
         }
 
