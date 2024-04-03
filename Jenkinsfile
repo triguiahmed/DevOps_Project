@@ -12,9 +12,6 @@ pipeline {
 					try {
                         echo "Cleaning Workspace"
                         cleanWs()
-                        echo "Fetching source code..."
-						git 'https://github.com/triguiahmed/DevOps_Project.git'
-						echo "Source code fetched successfully."
 					} catch (Exception e) {
 						error "Fail in Fetch Source Code stage: ${e.message}"
 					}
