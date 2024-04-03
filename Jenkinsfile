@@ -88,14 +88,14 @@ pipeline {
         stage('Build backend docker image') {
                 steps {
                     echo "Building backend docker image"
-                    sh 'cd DevOps_Project && docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
+                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
                         }
                     }
         stage('Push images to Dockerhub') {
                 steps{
                         script{
                         sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                        sh 'cd DevOps_Project && docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
+                        sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
                         }
                     }
                 }
