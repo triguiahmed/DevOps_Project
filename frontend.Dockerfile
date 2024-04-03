@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:14 as build
+FROM node:alpine as build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -14,13 +14,13 @@ RUN npm install
 COPY DevOps_Project_Front/. .
 
 # Build the Angular app for production
-RUN ng build --prod
+RUN npm run build
 
 # Use a smaller, production-ready image as the final image
 FROM nginx:alpine
 
 # Copy the production-ready Angular app to the Nginx webserver's root directory
-COPY --from=build /app/dist/your-angular-app /usr/share/nginx/html
+COPY --from=build /app/dist/DevOps_Project_Front /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
