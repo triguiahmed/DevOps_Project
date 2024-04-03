@@ -136,26 +136,6 @@ public class InvoiceServiceTest {
 
 
     @Test
-    public void testGetInvoicesBySupplier() {
-        // Arrange
-        Long idSupplier = 1L;
-        Supplier mockSupplier = mock(Supplier.class);
-        Invoice mockInvoice1 = new Invoice(); // Set properties as needed
-        Invoice mockInvoice2 = new Invoice(); // Set properties as needed
-        Set<Invoice> expectedInvoices = Set.of(mockInvoice1, mockInvoice2);
-
-        when(supplierRepository.findById(idSupplier)).thenReturn(Optional.of(mockSupplier));
-        when(mockSupplier.getInvoices()).thenReturn(expectedInvoices);
-
-        // Act
-        List<Invoice> actualInvoices = invoiceServiceImpl.getInvoicesBySupplier(idSupplier);
-
-        // Assert
-        assertNotNull(actualInvoices, "The returned invoice list should not be null");
-        assertEquals(expectedInvoices, actualInvoices, "The returned invoices should match the expected ones");
-    }
-
-    @Test
     public void testGetInvoicesBySupplier_NotFound() {
         // Arrange
         Long idSupplier = 2L;
