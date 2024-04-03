@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    image: devops_project-2alinfo03-backend
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: devops
+
+  frontend:
+    image: devops_project-2alinfo03-frontend
+    ports:
+      - "80:80"
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devops
+      MYSQL_USER: devops
+      MYSQL_PASSWORD: root
