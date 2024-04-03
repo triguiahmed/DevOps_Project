@@ -13,7 +13,7 @@ services:
   frontend:
     image: devops_project-2alinfo03-frontend
     ports:
-      - "80:80"
+      - "8085:80"
 
   db:
     image: mysql:5.7
