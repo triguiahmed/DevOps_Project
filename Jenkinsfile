@@ -22,7 +22,7 @@ pipeline {
 			}
 			}
 
-        stage('Clean') {
+        stage('MVN Clean') {
             steps {
                 script {
                         try {
@@ -36,11 +36,11 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('MVN Compile') {
             steps {
                 script {
                         try {
-                            echo 'Building the project...'
+                            echo 'Compile the project...'
                             sh 'cd DevOps_Project && mvn compile'
                             echo 'Project built successfully.'
                         } catch (Exception e) {
@@ -50,6 +50,18 @@ pipeline {
             }
 
         }
+        stage('MVN TEST'){
+                steps{
+                    sh 'mvn clean test';
+                }
+            }
+
+            stage("MVN Build") {
+               steps {
+                sh 'mvn install -DskipTests=true'
+                }
+            }
+
         
         // stage('SonarQube tests') {
         //     steps {
@@ -74,6 +86,7 @@ pipeline {
 
         stage('Build backend docker image') {
                 steps {
+                    echo "Building backend docker image"
                     sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
                         }
                     }
