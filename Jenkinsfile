@@ -11,7 +11,7 @@ pipeline {
 				script {
 					try {
                         echo "Cleaning Workspace"
-                        cleanWs()
+                        
 					} catch (Exception e) {
 						error "Fail in Fetch Source Code stage: ${e.message}"
 					}
@@ -106,10 +106,12 @@ pipeline {
         success {
             // Actions to perform on successful build
             echo 'Build successful!'
+		cleanWs()
         }
         failure {
             // Actions to perform on build failure
             echo 'Build failed!'
+		cleanWs()
         }
     }
     }
