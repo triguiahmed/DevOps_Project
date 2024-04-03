@@ -10,6 +10,8 @@ pipeline {
 			steps {
 				script {
 					try {
+                        echo "Cleaning Workspace"
+                        sh 'rm -rf /var/jenkins_home/workspace/'
                         echo "Fetching source code..."
 						git 'https://github.com/triguiahmed/DevOps_Project.git'
 						echo "Source code fetched successfully."
