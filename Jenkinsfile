@@ -59,13 +59,13 @@ pipeline {
         }
         stage('MVN TEST'){
                 steps{
-                    sh 'mvn clean test';
+                    sh 'cd DevOps_Project && mvn clean test';
                 }
             }
         */
             stage("MVN Build") {
                steps {
-                sh 'mvn install -DskipTests=true'
+                sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
                 }
             }
 
@@ -88,14 +88,14 @@ pipeline {
         stage('Build backend docker image') {
                 steps {
                     echo "Building backend docker image"
-                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
+                    sh 'cd DevOps_Project && docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG .'
                         }
                     }
         stage('Push images to Dockerhub') {
                 steps{
                         script{
                         sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                        sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
+                        sh 'cd DevOps_Project && docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03:$IMAGE_TAG'
                         }
                     }
                 }
