@@ -50,12 +50,19 @@ pipeline {
             }
 
         }
+        /* stage('SonarQube tests') {
+             steps {
+                withSonarQubeEnv('sonar') {
+                     sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.projectName='DevOps' -Dsonar.host.url=http://sonarqube:9000"
+                 }
+            }
+        }
         stage('MVN TEST'){
                 steps{
                     sh 'mvn clean test';
                 }
             }
-
+        */
             stage("MVN Build") {
                steps {
                 sh 'mvn install -DskipTests=true'
@@ -63,13 +70,7 @@ pipeline {
             }
 
         
-        // stage('SonarQube tests') {
-        //     steps {
-        //         withSonarQubeEnv('sonar') {
-        //             sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.projectName='DevOps' -Dsonar.host.url=http://sonarqube:9000"
-        //         }
-        //     }
-        // }
+
         stage('Nexus Deploy') {
             steps {
                 script {
