@@ -3,6 +3,7 @@ version: '3.8'
 services:
   frontend:
     image: ahmedtrigui001/devops_project-2alinfo03-frontend
+    command: npm run start
     ports:
       - "8085:4200"
   db:
