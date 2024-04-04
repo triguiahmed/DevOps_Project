@@ -16,7 +16,7 @@ services:
   backend:
     image: ahmedtrigui001/devops_project-2alinfo03-backend
     ports:
-      - "3306:3306"
+      - "8083:8083"
     depends_on:
       - db
     restart: always
