@@ -18,6 +18,7 @@ RUN npm run build
 
 # Use a smaller, production-ready image as the final image
 FROM nginx:alpine
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy the production-ready Angular app to the Nginx webserver's root directory
 COPY --from=build /app/dist/summer-workshop-angular /usr/share/nginx/html
