@@ -25,7 +25,7 @@ COPY DevOps_Project_Front/. .
 #COPY --from=build /app/dist/summer-workshop-angular /usr/share/nginx/html
 
 # Expose port 80
-#EXPOSE 80
+EXPOSE 4200
 
 # Start Nginx
 #CMD ["nginx", "-g", "daemon off;"]
