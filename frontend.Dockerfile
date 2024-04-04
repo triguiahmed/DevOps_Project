@@ -14,7 +14,7 @@ RUN npm install
 COPY DevOps_Project_Front/. .
 
 # Build the Angular app for production
-RUN npm run start
+#RUN npm run start
 
 
 # Use a smaller, production-ready image as the final image
