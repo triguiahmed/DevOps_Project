@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_TAG = "${env.BUILD_NUMBER}"
+        IMAGE_TAG = "latest"
         DOCKERHUB_USERNAME =  "${env.DOCKERHUB_USERNAME}"
         DOCKERHUB_PASSWORD =  "${env.DOCKERHUB_PASSWORD}"
         }
