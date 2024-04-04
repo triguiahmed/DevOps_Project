@@ -7,7 +7,7 @@ services:
     ports:
       - "8085:4200"
   db:
-    image: mysql:8.3.0
+    image: mysql:5.7
     ports:
       - "3306:3306"
     environment:
