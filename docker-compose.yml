@@ -5,6 +5,8 @@ services:
     image: ahmedtrigui001/devops_project-2alinfo03-backend
     ports:
       - "8083:8082"
+    depends_on:
+      - db
     environment:
       MYSQL_HOST: db
       MYSQL_PORT: 3306
