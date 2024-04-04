@@ -1,22 +1,10 @@
 version: '3.8'
 
 services:
-  backend:
-    image: ahmedtrigui001/devops_project-2alinfo03-backend
-    depends_on:
-      - db
-    environment:
-      MYSQL_HOST: db
-      MYSQL_PORT: 3306
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DB: devops
-
   frontend:
     image: ahmedtrigui001/devops_project-2alinfo03-frontend
     ports:
       - "8085:80"
-
   db:
     image: mysql:5.7
     ports:
@@ -26,3 +14,16 @@ services:
       MYSQL_DATABASE: devops
       MYSQL_USER: devops
       MYSQL_PASSWORD: root
+  backend:
+    image: ahmedtrigui001/devops_project-2alinfo03-backend
+    command: sleep 3000
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: devops
+
+
