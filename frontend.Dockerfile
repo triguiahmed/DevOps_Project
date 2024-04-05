@@ -11,7 +11,7 @@ COPY DevOps_Project_Front/package*.json ./
 RUN npm install
 
 # Copy the entire project to the container
-COPY ./DevOps_Project_Front/* ./
+COPY ./DevOps_Project_Front/ .
 
 # Build the Angular app for production
 RUN npm run build --prod
