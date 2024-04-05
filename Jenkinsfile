@@ -66,7 +66,7 @@ pipeline {
                 }
             }
 
-        /*
+        
 
         stage('Nexus Deploy') {
             steps {
@@ -80,7 +80,7 @@ pipeline {
                         }
                     }
             }
-        }*/
+        }
 
         stage('Build backend docker image') {
                 steps {
@@ -122,23 +122,18 @@ pipeline {
         success {
             // Actions to perform on successful build
             echo 'Build successful!'
-		cleanWs()
         }
         failure {
             // Actions to perform on build failure
             echo 'Build failed!'
-		cleanWs()
         }
 
         always {
             script {
+                cleanWs()
                 currentBuild.result = currentBuild.currentResult
-            emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
-    body: "The pipeline for project ${currentBuild.projectName} has completed with the status: ${currentBuild.result}.",
-    to: "trigui.ahmed001@gmail.com",
-    mimeType: 'text/plain'
            
-                        /*emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
+                        emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
                         body: """
                             <html>
                             <head>
@@ -183,7 +178,7 @@ pipeline {
                             </html>
                         """.stripIndent(),
                         to: "trigui.ahmed@esprit.tn",
-                        mimeType: 'text/html'*/
+                        mimeType: 'text/html'
 
             }
             }
