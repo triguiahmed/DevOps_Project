@@ -91,7 +91,7 @@ pipeline {
 	stage('Build frontend docker image') {
                 steps {
                     echo "Building frontend docker image"
-                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-g2-frontend:$IMAGE_TAG -f frontend.Dockerfile .'
+                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-g2-frontend:$IMAGE_TAG -f frontend.Dockerfile . --no-cache'
                         }
                     }
    //      stage('Push images to Dockerhub') {
