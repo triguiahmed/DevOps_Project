@@ -48,18 +48,18 @@ pipeline {
             }
 
         }
-        // stage('SonarQube tests') {
-        //      steps {
-        //         withSonarQubeEnv('sonar') {
-        //              sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000"
-        //          }
-        //     }
-        // }
- //        stage('MVN TEST'){
- //                steps{
- //                    sh 'cd DevOps_Project && mvn test';
- //                }
-	// }
+          stage('SonarQube tests') {
+               steps {
+                  withSonarQubeEnv('sonar') {
+                       sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.host.url=http: sonarqube:9000"
+                   }
+              }
+          }
+          stage('MVN TEST'){
+                  steps{
+                      sh 'cd DevOps_Project && mvn test';
+                  }
+	  }
             stage("MVN Build") {
                steps {
                 sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
@@ -68,19 +68,19 @@ pipeline {
 
         
 
-        // stage('Nexus Deploy') {
-        //     steps {
-        //         script {
-        //                 try {
-        //                     echo 'Deploying project...'
-        //                     sh "cd DevOps_Project && mvn deploy -U -DaltDeploymentRepository=deploymentRepo::default::http://nexus:8081/repository/maven-releases/ -DskipTests=true"
-        //                     echo 'Project deployed successfully.'
-        //                 } catch (Exception e) {
-        //                     error "Fail in Nexus Deploy stage: ${e.message}"
-        //                 }
-        //             }
-        //     }
-        // }
+          stage('Nexus Deploy') {
+              steps {
+                  script {
+                          try {
+                              echo 'Deploying project...'
+                              sh "cd DevOps_Project && mvn deploy -U -DaltDeploymentRepository=deploymentRepo::default::http: nexus:8081/repository/maven-releases/ -DskipTests=true"
+                              echo 'Project deployed successfully.'
+                          } catch (Exception e) {
+                              error "Fail in Nexus Deploy stage: ${e.message}"
+                          }
+                      }
+              }
+          }
 
         stage('Build backend docker image') {
                 steps {
@@ -94,15 +94,15 @@ pipeline {
                     sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG -f frontend.Dockerfile .'
                         }
                     }
-   //      stage('Push images to Dockerhub') {
-   //              steps{
-   //                      script{
-   //                      sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-   //                      sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-backend:$IMAGE_TAG'
-			// sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG'
-   //                      }
-   //                  }
-   //              }
+          stage('Push images to Dockerhub') {
+                  steps{
+                          script{
+                          sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                          sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-backend:$IMAGE_TAG'
+			  sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG'
+                          }
+                      }
+                  }
 	stage('Deploy') {
                 steps{
                         script{
