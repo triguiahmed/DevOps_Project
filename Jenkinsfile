@@ -66,7 +66,7 @@ pipeline {
                 }
             }
 
-        
+        /*
 
         stage('Nexus Deploy') {
             steps {
@@ -80,7 +80,7 @@ pipeline {
                         }
                     }
             }
-        }
+        }*/
 
         stage('Build backend docker image') {
                 steps {
@@ -107,7 +107,7 @@ pipeline {
                 steps{
                         script{
 				            sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                            sh 'docker-compose down' // Stop and remove existing containers
+                            sh 'docker compose down' // Stop and remove existing containers
                         	sh 'docker compose up -d'
                         }
                     }
@@ -135,7 +135,7 @@ pipeline {
                 currentBuild.result = currentBuild.currentResult
             emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
     body: "The pipeline for project ${currentBuild.projectName} has completed with the status: ${currentBuild.result}.",
-    to: "trigui.ahmed@esprit.tn",
+    to: "trigui.ahmed001@gmail.com",
     mimeType: 'text/plain'
            
                         /*emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
