@@ -180,6 +180,7 @@ pipeline {
                         to: "trigui.ahmed@esprit.tn",
                         mimeType: 'text/html'
 
+
             }
             }
     }
