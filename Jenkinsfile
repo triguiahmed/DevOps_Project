@@ -133,8 +133,8 @@ pipeline {
             script {
                 currentBuild.result = currentBuild.currentResult
             }
-
-            emailext subject: """<html>
+  emailext subject:"DevOps Project Pipeline Status"
+             body: """<html>
 <head>
     <style>
         body {
