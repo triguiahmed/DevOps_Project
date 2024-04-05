@@ -66,7 +66,7 @@ pipeline {
                 }
             }
 
-        
+        /*
 
         stage('Nexus Deploy') {
             steps {
@@ -80,7 +80,7 @@ pipeline {
                         }
                     }
             }
-        }
+        }*/
 
         stage('Build backend docker image') {
                 steps {
