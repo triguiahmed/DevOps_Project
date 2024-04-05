@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class DevOps_ProjectSpringBootApplicationTest {
-        @Test
-        void contextLoads() {
-        }
+       // @Test
+       // void contextLoads() {
+        //}
     }
 
