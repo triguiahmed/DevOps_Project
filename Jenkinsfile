@@ -64,56 +64,61 @@ pipeline {
                 sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
                 }
             }
+        }
+        stage('MVN TEST'){
+                steps{
+                    sh 'cd DevOps_Project && mvn test';
+                }
+	}
+	    stage("MVN Build") {
+	       steps {
+		sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
+		}
+	    }
 
-    
-
-        // stage('Nexus Deploy') {
-        //     steps {
-        //         script {
-        //                 try {
-        //                     echo 'Deploying project...'
-        //                     sh "cd DevOps_Project && mvn deploy -U -DaltDeploymentRepository=deploymentRepo::default::http://nexus:8081/repository/maven-releases/ -DskipTests=true"
-        //                     echo 'Project deployed successfully.'
-        //                 } catch (Exception e) {
-        //                     error "Fail in Nexus Deploy stage: ${e.message}"
-        //                 }
-        //             }
-        //     }
-        // }
+        stage('Nexus Deploy') {
+            steps {
+                script {
+                        try {
+                            echo 'Deploying project...'
+                            sh "cd DevOps_Project && mvn deploy -U -DaltDeploymentRepository=deploymentRepo::default::http://nexus:8081/repository/maven-releases/ -DskipTests=true"
+                            echo 'Project deployed successfully.'
+                        } catch (Exception e) {
+                            error "Fail in Nexus Deploy stage: ${e.message}"
+                        }
+                    }
+            }
+        }
 
         stage('Build backend docker image') {
                 steps {
                     echo "Building backend docker image"
-                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-backend:$IMAGE_TAG .'
+                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-g2-backend:$IMAGE_TAG .'
                         }
                     }
 	stage('Build frontend docker image') {
                 steps {
                     echo "Building frontend docker image"
-                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG -f frontend.Dockerfile .'
+                    sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-g2-frontend:$IMAGE_TAG -f frontend.Dockerfile .'
                         }
                     }
         stage('Push images to Dockerhub') {
-                 steps{
-                         script{
-                         sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                         sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-backend:$IMAGE_TAG'
-			 sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG'
-                         }
-                     }
-                 }
-	stage('Deploy') {
                 steps{
                         script{
-				            sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-                            sh 'docker compose down' // Stop and remove existing containers
-                        	sh 'docker compose up -d'
+                        sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                        sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-g2-backend:$IMAGE_TAG'
+			            sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-g2-frontend:$IMAGE_TAG'
                         }
                     }
                 }
-
-
-        
+	stage('Deploy') {
+                steps{
+                        script{
+				            sh 'docker compose down'
+                        	sh 'docker compose up -d --build'
+                        }
+                    }
+                }
         
     }
     
