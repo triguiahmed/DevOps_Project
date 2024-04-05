@@ -119,16 +119,9 @@ pipeline {
     }
     
     post {
-        success {
-            // Actions to perform on successful build
-            echo 'Build successful!'
+	always {
 		cleanWs()
-        }
-        failure {
-            // Actions to perform on build failure
-            echo 'Build failed!'
-		cleanWs()
-        }
+	}
     }
     }
     
