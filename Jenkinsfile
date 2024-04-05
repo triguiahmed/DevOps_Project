@@ -55,11 +55,11 @@ pipeline {
                  }
             }
         }
- //        stage('MVN TEST'){
- //                steps{
- //                    sh 'cd DevOps_Project && mvn test';
- //                }
-	// }
+         stage('MVN TEST'){
+                 steps{
+                     sh 'cd DevOps_Project && mvn test';
+                 }
+	 }
             stage("MVN Build") {
                steps {
                 sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
@@ -94,15 +94,15 @@ pipeline {
                     sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG -f frontend.Dockerfile .'
                         }
                     }
-   //      stage('Push images to Dockerhub') {
-   //              steps{
-   //                      script{
-   //                      sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-   //                      sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-backend:$IMAGE_TAG'
+         stage('Push images to Dockerhub') {
+                 steps{
+                         script{
+                         sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                         sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-backend:$IMAGE_TAG'
 			// sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG'
-   //                      }
-   //                  }
-   //              }
+                         }
+                     }
+                 }
 	stage('Deploy') {
                 steps{
                         script{
