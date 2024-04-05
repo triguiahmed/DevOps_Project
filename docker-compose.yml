@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: ahmedtrigui001/devops_project-2alinfo03-frontend
+    image: medHadiji/devops_project-2alinfo03-frontend
     ports:
       - "8085:80"
   db:
@@ -13,7 +13,7 @@ services:
       MYSQL_USER: devops
       MYSQL_PASSWORD: root
   backend:
-    image: ahmedtrigui001/devops_project-2alinfo03-backend
+    image: medHadiji/devops_project-2alinfo03-backend
     ports:
       - "8083:8083"
     depends_on:
