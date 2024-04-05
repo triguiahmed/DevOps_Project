@@ -66,7 +66,7 @@ pipeline {
                 }
             }
 
-        /*
+    
 
         stage('Nexus Deploy') {
             steps {
@@ -80,7 +80,7 @@ pipeline {
                         }
                     }
             }
-        }*/
+        }
 
         stage('Build backend docker image') {
                 steps {
@@ -94,7 +94,7 @@ pipeline {
                     sh 'docker build -t $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG -f frontend.Dockerfile .'
                         }
                     }
-        /* stage('Push images to Dockerhub') {
+        stage('Push images to Dockerhub') {
                  steps{
                          script{
                          sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
@@ -102,7 +102,7 @@ pipeline {
 			 sh 'docker push $DOCKERHUB_USERNAME/devops_project-2alinfo03-frontend:$IMAGE_TAG'
                          }
                      }
-                 }*/
+                 }
 	stage('Deploy') {
                 steps{
                         script{
