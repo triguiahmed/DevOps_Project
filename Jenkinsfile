@@ -106,7 +106,8 @@ pipeline {
 	stage('Deploy') {
                 steps{
                         script{
-				sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+				            sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                            sh 'docker-compose down' // Stop and remove existing containers
                         	sh 'docker compose up -d'
                         }
                     }
@@ -132,9 +133,12 @@ pipeline {
         always {
             script {
                 currentBuild.result = currentBuild.currentResult
-            
+            emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
+    body: "The pipeline for project ${currentBuild.projectName} has completed with the status: ${currentBuild.result}.",
+    to: "trigui.ahmed@esprit.tn",
+    mimeType: 'text/plain'
            
-                        emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
+                        /*emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
                         body: """
                             <html>
                             <head>
@@ -179,7 +183,7 @@ pipeline {
                             </html>
                         """.stripIndent(),
                         to: "trigui.ahmed@esprit.tn",
-                        mimeType: 'text/html'
+                        mimeType: 'text/html'*/
 
             }
             }
