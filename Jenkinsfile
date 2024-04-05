@@ -107,7 +107,6 @@ pipeline {
                 steps{
                         script{
 				sh 'docker compose down'
-				sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
                         	sh 'docker compose up -d'
                         }
                     }
