@@ -10,7 +10,6 @@ pipeline {
 			steps {
 				script {
 					try {
-                        echo "Cleaning Workspace"
 						sh 'git status'
                         
 					} catch (Exception e) {
@@ -130,7 +129,12 @@ pipeline {
 
         always {
             script {
+                                        echo "Cleaning Workspace ...."
+
                 cleanWs()
+
+                                        echo "Sending Email ...."
+
                 currentBuild.result = currentBuild.currentResult
            
                         emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
