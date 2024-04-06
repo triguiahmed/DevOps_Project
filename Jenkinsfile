@@ -54,11 +54,11 @@ pipeline {
                  }
             }
         }
- //        stage('MVN TEST'){
- //                steps{
- //                    sh 'cd DevOps_Project && mvn test';
- //                }
-	// }
+         stage('MVN TEST'){
+                 steps{
+                     sh 'cd DevOps_Project && mvn test';
+                }
+	}
             stage("MVN Build") {
                steps {
                 sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
