@@ -126,6 +126,7 @@ pipeline {
     
     post {
 	always {
+	    script{
 		cleanWs()
 		currentBuild.result = currentBuild.currentResult
            
@@ -177,6 +178,7 @@ pipeline {
                         mimeType: 'text/html'
 
 	}
+    }
     }
     }
     
