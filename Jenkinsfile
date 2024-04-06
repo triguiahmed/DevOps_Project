@@ -64,7 +64,7 @@ pipeline {
                 sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
                 }
             }
-        }
+    
         stage('MVN TEST'){
                 steps{
                     sh 'cd DevOps_Project && mvn test';
@@ -72,8 +72,8 @@ pipeline {
 	}
 	    stage("MVN Build") {
 	       steps {
-		sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
-		}
+            sh 'cd DevOps_Project &&  mvn install -DskipTests=true'
+            }
 	    }
 
         stage('Nexus Deploy') {
