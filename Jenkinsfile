@@ -119,7 +119,60 @@ pipeline {
     
     post {
 	always {
-		cleanWs()
+		 always {
+        script {
+            echo "Cleaning Workspace ...."
+            cleanWs()
+            echo "Sending Email ...."
+            currentBuild.result = currentBuild.currentResult
+            emailext subject: "Pipeline Status ${currentBuild.projectName} | ${currentBuild.result}",
+            body: """
+                            <html>
+                            <head>
+                                <style>
+                                    body {
+                                        font-family: Arial, sans-serif;
+                                        background-color: #f5f5f5;
+                                        padding: 20px;
+                                    }
+                                    .container {
+                                        max-width: 600px;
+                                        margin: 0 auto;
+                                        background-color: #ffffff;
+                                        border-radius: 5px;
+                                        padding: 20px;
+                                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                    }
+                                    h1 {
+                                        color: #333;
+                                    }
+                                    p {
+                                        font-size: 16px;
+                                        line-height: 1.5;
+                                        color: #555;
+                                    }
+                                    a {
+                                        color: #007bff;
+                                        text-decoration: none;
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <div class="container">
+                                    <h1>${currentBuild.projectName} Pipeline Status</h1>
+                                    <p>Dear Team,</p>
+                                    <p>The pipeline for project <strong>${currentBuild.projectName}</strong> has completed with the status: <strong>${currentBuild.result}</strong>.</p>
+                                    <p>You can view the detailed pipeline information <a href="${env.JENKINS_URL}blue/organizations/jenkins/DevOps_Project/detail/DevOps_Project/${env.BUILD_NUMBER}/pipeline/ ">here</a>.</p>
+                                    <p>Thank you,</p>
+                                    <p>Your Jenkins Server</p>
+                                </div>
+                            </body>
+                            </html>
+                        """.stripIndent(),
+            to: "mohamedhadiji00@gmail.com",
+            mimeType: 'text/html'
+        }
+    }
 	}
     }
     }
