@@ -173,7 +173,7 @@ pipeline {
                             </body>
                             </html>
                         """.stripIndent(),
-                        to: "mohamedaziz.chagour@esprit.tn",
+                        to: "chagourmedaziz@gmail.com",
                         mimeType: 'text/html'
 
 	}
