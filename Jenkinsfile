@@ -51,7 +51,7 @@ pipeline {
         stage('SonarQube tests') {
              steps {
                 withSonarQubeEnv('sonar') {
-                     sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps-aziz-branch -Dsonar.projectName='DevOps-aziz-branch' -Dsonar.host.url=http://sonarqube:9000"
+                     sh "cd DevOps_Project && mvn sonar:sonar -Dsonar.projectKey=DevOps_Project -Dsonar.projectName='DevOps_Project' -Dsonar.host.url=http://sonarqube:9000"
                  }
             }
         }
