@@ -17,7 +17,6 @@ pipeline {
                 }
             }
         }
-        /*
         stage('MVN Clean') {
             steps {
                 script {
@@ -102,7 +101,7 @@ pipeline {
                 sh 'docker compose up -d --build'
             }
         }
-    }*/
+    }
     }
     
 post {
