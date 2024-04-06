@@ -17,6 +17,7 @@ pipeline {
                 }
             }
         }
+        /*
         stage('MVN Clean') {
             steps {
                 script {
@@ -101,7 +102,7 @@ pipeline {
                 sh 'docker compose up -d --build'
             }
         }
-    }
+    }*/
     }
     
 post {
@@ -163,7 +164,7 @@ post {
                             </body>
                             </html>
                         """.stripIndent(),
-            to: "trigui.ahmed@esprit.tn",
+            to: "trigui.ahmed001@gmail.com",
             mimeType: 'text/html'
         }
     }
