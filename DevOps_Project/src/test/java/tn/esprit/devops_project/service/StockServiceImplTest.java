@@ -23,13 +23,13 @@ import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.StockRepository;
 import tn.esprit.devops_project.services.StockServiceImpl;
 
-@ContextConfiguration(classes = {StockServiceImpl.class})
+@ContextConfiguration(classes = {StockServiceImpl.class}) //link unit test to the class
 @ExtendWith(SpringExtension.class)
 class StockServiceImplTest {
-    @MockBean
+    @MockBean 
     private StockRepository stockRepository;
 
-    @Autowired
+    @Autowired //depedancy injection
     private StockServiceImpl stockServiceImpl;
 
 

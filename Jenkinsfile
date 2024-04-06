@@ -164,7 +164,7 @@ post {
                             </body>
                             </html>
                         """.stripIndent(),
-            to: "trigui.ahmed001@gmail.com",
+            to: "trigui.ahmed@esprit.tn",
             mimeType: 'text/html'
         }
     }
