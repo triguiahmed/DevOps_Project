@@ -171,7 +171,7 @@ pipeline {
                                     <h1>${currentBuild.projectName} Pipeline Status</h1>
                                     <p>Dear Team,</p>
                                     <p>The pipeline for project <strong>${currentBuild.projectName}</strong> has completed with the status: <strong>${currentBuild.result}</strong>.</p>
-                                    <p>You can view the detailed pipeline information <a href="https://${env.JENKINS_URL}/job/${env.JOB_NAME}/-${env.BUILD_NUMBER}/">here</a>.</p>
+                                    <p>You can view the detailed pipeline information <a href="${env.JENKINS_URL}job/${env.JOB_NAME}/${env.BUILD_NUMBER}/">here</a>.</p>
                                     <p>Thank you,</p>
                                     <p>Your Jenkins Server</p>
                                 </div>
